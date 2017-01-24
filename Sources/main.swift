@@ -1,4 +1,8 @@
 import Kitura
+import HeliumLogger
+
+// Initialize HeliumLogger
+HeliumLogger.use()
 
 // Create a new router
 let router = Router()
@@ -8,6 +12,12 @@ router.get("/") {
     request, response, next in
     response.send("Hello, World!")
     next()
+}
+
+router.get("/user/:id") { request, response, _ in
+    let id = request.parameters["id"] ?? ""
+    
+    try response.send("Hello, \(id)").end()
 }
 
 // Add an HTTP server and connect it to the router
