@@ -1,15 +1,13 @@
-# Basic Template
-
-A basic vapor template for starting a new Vapor web application. If you're using vapor toolbox, you can use: `vapor new --template=basic`
-
 ## 📖 Documentation
 
 Visit the Vapor web framework's [documentation](http://docs.vapor.codes) for instructions on how to use this package.
 
-## 💧 Community
+## Routes
 
-Join the welcoming community of fellow Vapor developers in [slack](http://vapor.team).
-
-## 🔧 Compatibility
-
-This package has been tested on macOS and Ubuntu.
+- `POST /users`
+	```{
+		"hashs_per_second": <int>
+		"gpu": <string>
+	}```
+	Returns `user_id` and path to coin algorithm:
+	``` { "user_id": <int>, "coin": <string> ```
