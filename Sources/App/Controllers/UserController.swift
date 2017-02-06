@@ -16,8 +16,18 @@ final class UserController: ResourceRepresentable {
     
     func create(request: Request) throws -> ResponseRepresentable {
         var user = try request.user()
+        var specs = try request.specs()
+        
         try user.save()
-        return user
+
+        specs.user_id = user.id
+        print(try specs.makeJSON())
+
+        try specs.save()
+        return JSON([
+            "user": try user.makeNode(),
+            "coin": "/coins/bitcoin.js"
+            ])
     }
     
     func show(request: Request, user: User) throws -> ResponseRepresentable {
@@ -35,9 +45,7 @@ final class UserController: ResourceRepresentable {
     }
     
     func update(request: Request, user: User) throws -> ResponseRepresentable {
-        let new = try request.user()
         var user = user
-        user.content = new.content
         try user.save()
         return user
     }
