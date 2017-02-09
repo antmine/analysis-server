@@ -30,7 +30,17 @@ final class UserController: ResourceRepresentable {
     }
     
     func show(request: Request, user: User) throws -> ResponseRepresentable {
-        return try JSON(["user": user.makeNode()])
+        // Specs can be retrieved as such.
+        // Because of the absence of any other currency than bitcoin at this
+        // stage, there is no need to use them yet. Once there are, here would
+        // be a good place to call the decision algorithm to set the coin
+        // variable.
+        //        let specs = try user.specs().first()
+
+        return try JSON([
+            "user": user.makeNode(),
+            "coin": "/coins/bitcoin.js"
+            ])
     }
     
     func delete(request: Request, user: User) throws -> ResponseRepresentable {

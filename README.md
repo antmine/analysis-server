@@ -11,3 +11,7 @@ Visit the Vapor web framework's [documentation](http://docs.vapor.codes) for ins
 	}```
 	Returns `user_id` and path to coin algorithm:
 	``` { "user_id": <int>, "coin": <string> ```
+
+- `GET /users/:id`
+
+Returns: ``` { "user_id": <int>, "coin": <string> ```
