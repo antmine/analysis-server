@@ -2,16 +2,24 @@
 
 Visit the Vapor web framework's [documentation](http://docs.vapor.codes) for instructions on how to use this package.
 
-## Routes
+## ⛔️ Routes
 
-- `POST /users`
-	```{"specs":{
-		"hashs_per_second": <int>
-		"gpu": <string>
-	}```
-	Returns `user_id` and path to coin algorithm:
-	``` { "user_id": <int>, "coin": <string> ```
+|Method| Endpoint | JSON post | JSON return |
+|--|--|--|
+| POST | /users | ```{"specs":{	"hashs_per_second": <int>" 	gpu": <string>}```| ``` { "user_id": <int>, "coin": <string> }```
+| GET|/users| N/A | ``` { "user_id": <int>, "coin": <string> }```
 
-- `GET /users/:id`
+## ⚙️ Configuration
 
-Returns: ``` { "user_id": <int>, "coin": <string> ```
+Configure MySQL by creating a file `Config/Secrets/mysql.json`:
+
+```json
+{
+    "host": "",
+    "user": "",
+    "password": "",
+    "database": "",
+    "port": "",
+    "encoding": "utf8"
+}
+```
