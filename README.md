@@ -5,7 +5,7 @@ Visit the Vapor web framework's [documentation](http://docs.vapor.codes) for ins
 ## Routes
 
 - `POST /users`
-	```{
+	```{"specs":{
 		"hashs_per_second": <int>
 		"gpu": <string>
 	}```
