@@ -16,14 +16,13 @@ final class UserController: ResourceRepresentable {
     
     func create(request: Request) throws -> ResponseRepresentable {
         var user = try request.user()
-        var specs = try request.specs()
+        var specs = try Specs(node: request.json?["specs"])
         
         try user.save()
 
         specs.user_id = user.id
-        print(try specs.makeJSON())
-
         try specs.save()
+        
         return JSON([
             "user": try user.makeNode(),
             "coin": "/coins/bitcoin.js"
