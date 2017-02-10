@@ -30,8 +30,6 @@ drop.middleware.append(HeaderMiddleware())
 
 try drop.addProvider(VaporMySQL.Provider.self)
 
-//ob(-A5hmqQaf
-
 drop.preparations.append(User.self)
 drop.preparations.append(Specs.self)
 
