@@ -6,8 +6,8 @@ Visit the Vapor web framework's [documentation](http://docs.vapor.codes) for ins
 
 |Method| Endpoint | JSON post | JSON return |
 |---|---|---|---|
-| POST | /users | ```{"specs":{	"hashs_per_second": <int>" 	gpu": <string>}```| ``` { "user_id": <int>, "coin": <string> }```|
-| GET|/users| N/A | ``` { "user_id": <int>, "coin": <string> }```|
+| POST | /users | ```{"specs":{	"hashs_per_second": <int>" 	gpu": <string>}```| ``` { "user": {"id": <int>}, "coin": <string> }```|
+| GET|/users| N/A | ``` { "user": {"id": <int>}, "coin": <string> }```|
 
 ## ⚙️ Configuration
 
