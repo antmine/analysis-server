@@ -106,6 +106,7 @@ final class UserController {
         try specs.save()
         
         return JSON([
+            "userID": user.id ?? -1,
             "coin": try getAlgorithm(for: (user.id?.int)!)
             ])
     }
@@ -118,12 +119,16 @@ final class UserController {
     /// - Returns: path of algorithm to use
     /// - Throws: if user is not found
     func show(request: Request, userID: Int) throws -> ResponseRepresentable {
-        return JSON(["coin": try getAlgorithm(for: userID)])
+        let algorithmPath: String = try "Public" + getAlgorithm(for: userID)
+        let algorithm = try String(contentsOfFile: drop.workDir + algorithmPath)
+        return algorithm
     }
     
     /// Updates a users battery and/or tab status
+    ///
     /// PUT /users/:id
-    /// Only call that requires to update SQL everytime
+    ///
+    /// Only call that requires to update SQL everytime.
     /// Might be possible once algorithms are in place to avoid this by knowing
     /// that a battery status change can trigger a predefined replacement algorithm
     /// depending on current algorithm in use
@@ -132,7 +137,7 @@ final class UserController {
     ///   - request: vapor request
     ///   - userID: user's id
     /// - Returns: path of algorithm to use
-    /// - Throws:
+    /// - Throws: 
     func update(request: Request, userID: Int) throws -> ResponseRepresentable {
         guard let user = try User.query().filter("id", userID).first(),
             var specs = try user.specs().first() else {
@@ -150,9 +155,9 @@ final class UserController {
         specs.user_id = user.id
         try specs.save()
         
-        return JSON([
-            "coin": try getAlgorithm(for: userID)
-            ])
+        let algorithmPath: String = try "Public" + getAlgorithm(for: userID)
+        let algorithm = try String(contentsOfFile: drop.workDir + algorithmPath)
+        return algorithm
     }
     
     // MARK: Re-usable Date Formatter
