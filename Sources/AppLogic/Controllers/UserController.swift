@@ -17,12 +17,6 @@ final class UserController {
         self.drop = drop
     }
     
-    // Thread pool to send algorithm updates to
-    let queue: DispatchQueue = DispatchQueue(
-        label: "com.antmine.analysis-server.sql",
-        qos: .background
-    )
-    
     /// Gets algorithm from cache, making sure to update it if it is older
     /// than one week
     ///
@@ -33,7 +27,8 @@ final class UserController {
         var currency: String?
         let cacheForUser = try drop.cache.get("\(userID)")?.array
         
-        if let currencyFromRedis = cacheForUser?[1].string,
+        if cacheForUser?.count == 2,
+            let currencyFromRedis = cacheForUser?[1].string,
             let lastUpdatedString = cacheForUser?[0].string {
             
             currency = currencyFromRedis
