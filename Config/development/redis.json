@@ -1,3 +1,5 @@
 {
-    "url": "$REDIS_URL"
+    "hostname": "ec2-34-251-183-72.eu-west-1.compute.amazonaws.com",
+    "port": 12149,
+    "password": "p1e84d8e1000110a51b83ba23f356a532a116ec21a5a8d8ca710fc4ffcbd0aae7"
 }
