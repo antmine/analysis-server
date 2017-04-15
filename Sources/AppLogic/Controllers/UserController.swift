@@ -115,7 +115,7 @@ final class UserController {
     /// - Throws: if user is not found
     func show(request: Request, userID: Int) throws -> ResponseRepresentable {
         let algorithmPath: String = try "Public" + getAlgorithm(for: userID)
-        let algorithm = try String(contentsOfFile: drop.workDir + algorithmPath)
+        let algorithm = try String(contentsOfFile: drop.workDir + algorithmPath, encoding: .utf8)
         return algorithm
     }
     
@@ -151,7 +151,7 @@ final class UserController {
         try specs.save()
         
         let algorithmPath: String = try "Public" + getAlgorithm(for: userID)
-        let algorithm = try String(contentsOfFile: drop.workDir + algorithmPath)
+        let algorithm = try String(contentsOfFile: drop.workDir + algorithmPath, encoding: .utf8)
         return algorithm
     }
     
