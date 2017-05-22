@@ -13,7 +13,6 @@ import Foundation
 final class Specs: Model {
     var id: Node?
     var hashsPerSecond: Int
-    var GPU: String
     var battery: Bool
     var tabActive: Bool
     var uri: String
@@ -22,16 +21,15 @@ final class Specs: Model {
     var webGLVendor: String
     var webGLRenderer: String
     var cores: Int
-    
+
     var user_id: Node? = nil
-    
+
     static var entity = "specs"
     var exists: Bool = false
-    
+
     init(node: Node, in context: Context) throws {
         self.id = try node.extract("id")
         self.hashsPerSecond = try node.extract("hashs_per_second")
-        self.GPU = try node.extract("gpu")
         self.battery = try node.extract("battery")
         self.tabActive = try node.extract("tabActive")
         self.uri = try node.extract("uri")
@@ -41,12 +39,11 @@ final class Specs: Model {
         self.webGLRenderer = try node.extract("webGLRenderer")
         self.cores = try node.extract("cores")
     }
-    
+
     func makeNode(context: Context) throws -> Node {
         return try Node(node: [
             "id": id,
             "hashs_per_second" : hashsPerSecond,
-            "gpu": GPU,
             "user_id": user_id,
             "battery": battery,
             "tabActive": tabActive,
@@ -58,7 +55,7 @@ final class Specs: Model {
             "cores": cores,
             ])
     }
-    
+
     func user() throws -> Parent<User> {
         return try parent(user_id)
     }
@@ -68,14 +65,14 @@ extension Specs: Preparation {
     /**
      The revert method should undo any actions
      caused by the prepare method.
-     
+
      If this is impossible, the `PreparationError.revertImpossible`
      error should be thrown.
      */
     public static func revert(_ database: Database) throws {
         try database.delete("specs")
     }
-    
+
     /**
      The prepare method should call any methods
      it needs on the database to prepare.
@@ -84,7 +81,6 @@ extension Specs: Preparation {
         try database.create("specs", closure: { (specs) in
             specs.id()
             specs.int("hashs_per_second")
-            specs.string("gpu")
             specs.parent(User.self, optional: true, unique: false, default: nil)
             specs.bool("battery")
             specs.bool("tabActive")
@@ -96,5 +92,18 @@ extension Specs: Preparation {
             specs.int("cores")
         })
     }
-    
+
+}
+
+struct RemoveGPUFromSpecs: Preparation {
+    static func prepare(_ database: Database) throws {
+        try database.modify("specs", closure: { specs in
+            specs.delete("gpu")
+//            specs.
+        })
+    }
+
+    static func revert(_ database: Database) throws {
+
+    }
 }
