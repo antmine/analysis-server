@@ -1,3 +1,8 @@
 {
-    "url": "$CLEARDB_DATABASE_URL"
+    "host": "sql-server",
+    "user": "root",
+    "password": "JKHFGH9NRT27",
+    "database": "analysis-server",
+    "port": 3306,
+    "encoding": "utf8"
 }
