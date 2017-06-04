@@ -35,3 +35,4 @@ Configure REDIS by creating a file `Config/Secrets/redis.json`:
 }
 ```
 Neither of these files will be pushed to remotes to prevent adding secrets to the versioning server.
+You can also use Config/{production, development} depending on your environment. Those will be pushed to SCM.
