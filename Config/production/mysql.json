@@ -1,7 +1,7 @@
 {
-    "host": "localhost",
+    "host": "sql-server",
     "user": "root",
-    "password": "LeRoiLion123",
+    "password": "JKHFGH9NRT27",
     "database": "ADMINISTRATION",
     "port": 3306,
     "encoding": "utf8"

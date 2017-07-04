@@ -114,9 +114,9 @@ final class UserController {
     /// - Returns: path of algorithm to use
     /// - Throws: if user is not found
     func show(request: Request, userID: Int) throws -> ResponseRepresentable {
-        let algorithmPath: String = try "Public" + getAlgorithm(for: userID)
-        let algorithm = try String(contentsOfFile: drop.workDir + algorithmPath, encoding: .utf8)
-        return algorithm
+        return JSON([
+            "coin": try getAlgorithm(for: userID)
+            ])
     }
     
     /// Updates a users battery and/or tab status
@@ -150,9 +150,9 @@ final class UserController {
         specs.user_id = user.id
         try specs.save()
         
-        let algorithmPath: String = try "Public" + getAlgorithm(for: userID)
-        let algorithm = try String(contentsOfFile: drop.workDir + algorithmPath, encoding: .utf8)
-        return algorithm
+        return JSON([
+            "coin": try getAlgorithm(for: (user.id?.int)!)
+            ])
     }
     
     // MARK: Re-usable Date Formatter
