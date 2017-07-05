@@ -11,7 +11,8 @@ import VaporMySQL
 import VaporRedis
 
 public func load(_ drop: Droplet) throws {
-    drop.middleware.append(HeaderMiddleware())
+//    drop.middleware.append(HeaderMiddleware())
+//    drop.middleware.insert(CORSMiddleware(), at: 0)
     
     try drop.addProvider(VaporMySQL.Provider.self)
     try drop.addProvider(VaporRedis.Provider(config: drop.config))
