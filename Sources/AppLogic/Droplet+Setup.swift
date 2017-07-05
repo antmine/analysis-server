@@ -21,7 +21,6 @@ public func load(_ drop: Droplet) throws {
     drop.preparations.append(Specs.self)
 //    drop.preparations.append(RemoveGPUFromSpecs.self)
     
-    
     let userController = UserController(drop)
     drop.get("users", handler: userController.index)
     drop.post("users", handler: userController.create)
